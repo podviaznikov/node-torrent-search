@@ -28,17 +28,17 @@ var Torrent = function()
  * <li>order - Optional, can be either "asc" or "desc". Defaults to descending, in conjunction with sort parameter.</li>
  * </ul>
  */
-Torrent.prototype.find=function(query,callback,errorCallback)
+Torrent.prototype.find = function(query,callback,errorCallback)
 {
     var path=this.path;
     if(query)
     {
-        path=this.path+'?'+querystring.stringify(query);
+        path = this.path+'?'+querystring.stringify(query);
     }
     var request = this.client.request('GET', path, this.headers);
 	request.on('response', function (response) 
 	{
-	   if(response.statusCode=200)
+	   if(response.statusCode ==200)
        { 
 		   var buffer = '';
 		   response.setEncoding('utf8');
@@ -62,7 +62,7 @@ Torrent.prototype.find=function(query,callback,errorCallback)
 /**
  * Factory method for creating object instace that can send requests.
  */ 
-exports.create=function()
+exports.create = function()
 {
     return new Torrent();
 }

@@ -1,13 +1,13 @@
 var torrent = require('../torrent.js').create();
-var sys =require('sys');
-exports.testFakeItem=function(assert)
+var sys = require('sys');
+exports.testFakeItem = function(assert)
 {
     torrent.find({ihq:'dssadjaskdjaskjdksajdkasjdsajdkasdjaskdjkas'},function(data)
     {
         assert.equal(0,data.total_results);
     });
 };
-exports.testFindFirstMovieItem=function(assert)
+exports.testFindFirstMovieItem = function(assert)
 {
     torrent.find({ihq:'Inception',rows:1},function(data)
     {
