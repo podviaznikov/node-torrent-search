@@ -30,7 +30,7 @@ var Torrent = function()
  */
 Torrent.prototype.find = function(query,callback,errorCallback)
 {
-    var path=this.path;
+    var path = this.path;
     if(query)
     {
         path = this.path+'?'+querystring.stringify(query);
