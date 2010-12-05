@@ -2,11 +2,12 @@
     "name": "torrent-search",
     "version": "0.1.0",
     "description": "Simple Node API wrapper for Isohunt torrents search API",
-    "author": "Anton Podviaznikov (podviaznikov@gmail.com)"
+    "author": "Anton Podviaznikov (podviaznikov@gmail.com)",
     "contributors": [],
     "dependencies": {},
     "keywords": ["torrent", "search", "API", "wrapper", "isohunt"],
-    "directories": { "lib": "./lib/mail" },
     "scripts": {},
-    "bin": {}
+    "bin": {},
+    "main":"torrent.js",
+    "engines": { "node": ">= 0.2.3" }
 }
