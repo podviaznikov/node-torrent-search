@@ -9,7 +9,7 @@ var sys = require('sys'),
  */
 var Torrent = function()
 {
-    this.client = http.createClient(80, 'isohunt.com');
+    this.client = http.createClient(80, 'ca.isohunt.com');
     this.headers = {'Host': this.client.host};
     this.path = '/js/json.php';
 };
@@ -38,8 +38,9 @@ Torrent.prototype.find = function(query,callback,errorCallback)
     var request = this.client.request('GET', path, this.headers);
 	request.on('response', function (response) 
 	{
-	   if(response.statusCode ==200)
+	   if(response.statusCode==200)
        { 
+           
 		   var buffer = '';
 		   response.setEncoding('utf8');
 		   response.on('data', function (chunk) 
@@ -55,6 +56,10 @@ Torrent.prototype.find = function(query,callback,errorCallback)
        else if(errorCallback)
        {
            errorCallback(response.statusCode);
+       }
+       else
+       {
+           sys.log('Failed to handle respeonse with code'+response.statusCode);
        }
 	});   
 	request.end();

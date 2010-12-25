@@ -16,4 +16,3 @@ exports.testFindFirstMovieItem = function(assert)
         assert.match(movieItem.title,/Inception/)
     });
 };
-
