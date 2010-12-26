@@ -38,29 +38,20 @@ Torrent.prototype.find = function(query,callback,errorCallback)
     var request = this.client.request('GET', path, this.headers);
 	request.on('response', function (response) 
 	{
-	   if(response.statusCode==200)
-       { 
-           
-		   var buffer = '';
-		   response.setEncoding('utf8');
-		   response.on('data', function (chunk) 
-		   {
-		       buffer += (chunk || '');
-		   });
-		   response.on('end', function() 
-		   {
-		       sys.log(buffer);
-		       callback(JSON.parse(buffer));
-		   });
-       }
-       else if(errorCallback)
-       {
-           errorCallback(response.statusCode);
-       }
-       else
-       {
-           sys.log('Failed to handle respeonse with code'+response.statusCode);
-       }
+	    if(response.statusCode==200)
+        { 
+            var buffer = '';
+            response.setEncoding('utf8');response.on('data', function (chunk){buffer += (chunk || '');});
+            response.on('end', function(){sys.log(buffer);callback(JSON.parse(buffer));});
+        }
+        else if(errorCallback)
+        {
+            errorCallback(response.statusCode);
+        }
+        else
+        {
+            sys.log('Failed to handle respeonse with code:'+response.statusCode);
+        }
 	});   
 	request.end();
 }

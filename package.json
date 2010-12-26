@@ -1,6 +1,6 @@
 { 
     "name": "torrent-search",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "Simple Node API wrapper for Isohunt torrents search API",
     "author": "Anton Podviaznikov (podviaznikov@gmail.com)",
     "contributors": [],
