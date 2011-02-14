@@ -1,4 +1,4 @@
-var sys = require('sys'),
+var util = require('util'),
     http = require('http'),
     querystring = require('querystring');
 /**
@@ -9,8 +9,6 @@ var sys = require('sys'),
  */
 var Torrent = function()
 {
-    this.client = http.createClient(80, 'ca.isohunt.com');
-    this.headers = {'Host': this.client.host};
     this.path = '/js/json.php';
 };
 /**
@@ -35,14 +33,19 @@ Torrent.prototype.find = function(query,callback,errorCallback)
     {
         path = this.path+'?'+querystring.stringify(query);
     }
-    var request = this.client.request('GET', path, this.headers);
-	request.on('response', function (response) 
+    var options = 
+    {
+        host: 'ca.isohunt.com',
+        port: 80,
+        path: path
+    };
+    http.get(options, function(response)
 	{
 	    if(response.statusCode==200)
         { 
             var buffer = '';
             response.setEncoding('utf8');response.on('data', function (chunk){buffer += (chunk || '');});
-            response.on('end', function(){sys.log(buffer);callback(JSON.parse(buffer));});
+            response.on('end', function(){util.log(buffer);callback(JSON.parse(buffer));});
         }
         else if(errorCallback)
         {
@@ -50,13 +53,12 @@ Torrent.prototype.find = function(query,callback,errorCallback)
         }
         else
         {
-            sys.log('Failed to handle respeonse with code:'+response.statusCode);
+            util.log('Failed to handle respeonse with code:'+response.statusCode);
         }
 	});   
-	request.end();
 }
 /**
- * Factory method for creating object instace that can send requests.
+ * Factory method for creating object instance that can send requests.
  */ 
 exports.create = function()
 {
