@@ -17,7 +17,7 @@ var Torrent = function()
  * @param callback - callback function for handling result. Takes data as JSON object.
  * @param errorCallback - optional callback function that accepts response error code.
  * 
- * Floowing parameters can be used in the query:
+ * Folowing parameters can be used in the query:
  * <ul>
  * <li>ihq - Takes url encoded value as requested search query.</li>
  * <li>start  - Optional. Starting row number in paging through results set. First page have start=1, not 0. Defaults to 1. </li>
